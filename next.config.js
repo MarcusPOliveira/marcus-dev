@@ -9,6 +9,9 @@ const nextConfig = {
         permanent: true
       }
     ]
+  },
+  images: {
+    domains: ['avatars.githubusercontent.com', 'media.graphassets.com', 'design4users.com'],
   }
 }
 
