@@ -11,8 +11,35 @@ const nextConfig = {
     ]
   },
   images: {
-    domains: ['avatars.githubusercontent.com', 'media.graphassets.com', 'design4users.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'media.graphassets.com',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'design4users.com',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.adekz.com',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'media.licdn.com',
+        pathname: '**',
+      },
+    ],
   }
-}
-
-module.exports = nextConfig
+ }
+ 
+ module.exports = nextConfig
+ 
