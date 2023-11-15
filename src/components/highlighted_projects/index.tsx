@@ -14,7 +14,7 @@ export const HighlightedProjects = () => {
         {Array.from({ length: 3 }).map((_, index) => (
           <>
             <ProjectCard key={index} />
-            <HorizontalDivider className="my-16" key={index} />
+            <HorizontalDivider className="my-16" key={`divider-${index}`} />
           </>
         ))}
         <span className="flex items-center gap-1.5">
