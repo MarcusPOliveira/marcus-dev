@@ -1,3 +1,4 @@
+import { ContactForm } from '@/components/contact_form'
 import { Header } from '@/components/header'
 import { HeroSection } from '@/components/hero_section'
 import { HighlightedProjects } from '@/components/highlighted_projects'
@@ -12,6 +13,7 @@ export default function Home() {
       <Knowledge />
       <HighlightedProjects />
       <WorkExperience />
+      <ContactForm />
     </div>
   )
 }
