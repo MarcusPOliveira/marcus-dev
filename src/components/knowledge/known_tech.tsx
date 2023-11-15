@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-import { getRelativeTimeString } from '@/utils/getRelativeTime'
+import { getRelativeTimeString } from '@/utils'
 
 interface KnownTechProps {
   tech: {

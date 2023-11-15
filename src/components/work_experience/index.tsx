@@ -1,4 +1,4 @@
-import { SectionTitle } from '../section_title'
+import { SectionTitle } from '..'
 import { ExperienceItem } from './experience_item'
 
 export const WorkExperience = () => {

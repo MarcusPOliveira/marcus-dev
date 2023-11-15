@@ -7,8 +7,7 @@ import {
   TbMail,
 } from 'react-icons/tb'
 
-import { TechBadge } from '../tech_badge'
-import { Button } from '../button'
+import { Button, TechBadge } from '..'
 
 const MOCK_CONTACTS = [
   {

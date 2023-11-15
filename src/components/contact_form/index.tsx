@@ -2,12 +2,9 @@
 import { HiArrowNarrowRight } from 'react-icons/hi'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-
 import { useForm } from 'react-hook-form'
 
-import { Input } from '../input'
-import { Button } from '../button'
-import { SectionTitle } from '../section_title'
+import { Button, Input, SectionTitle } from '..'
 
 const contactFormSchema = z.object({
   name: z.string().min(3).max(100),

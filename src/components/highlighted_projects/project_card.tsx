@@ -2,8 +2,7 @@ import Image from 'next/image'
 import { FaMobile, FaDesktop } from 'react-icons/fa'
 import { HiArrowNarrowRight } from 'react-icons/hi'
 
-import { Link } from '../link'
-import { TechBadge } from '../tech_badge'
+import { Link, TechBadge } from '..'
 
 export const ProjectCard = () => {
   return (

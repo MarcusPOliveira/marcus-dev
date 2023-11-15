@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import { TechBadge } from '../tech_badge'
+
+import { TechBadge } from '..'
 
 export const ExperienceItem = () => {
   return (

@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 import { usePathname } from 'next/navigation'
 
-import { cn } from '@/utils/cn'
+import { cn } from '@/utils'
 
 interface NavItemProps {
   label: string

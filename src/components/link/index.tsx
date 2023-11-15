@@ -1,7 +1,7 @@
 import { ComponentProps } from 'react'
 import NextLink from 'next/link'
 
-import { cn } from '@/utils/cn'
+import { cn } from '@/utils'
 
 interface LinkProps extends ComponentProps<typeof NextLink> {}
 

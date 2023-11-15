@@ -1,7 +1,7 @@
 import { TbBrandNextjs } from 'react-icons/tb'
 
+import { SectionTitle } from '..'
 import { KnownTech } from './known_tech'
-import { SectionTitle } from '../section_title'
 
 export const Knowledge = () => {
   return (
