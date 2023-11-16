@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image'
 import { HiArrowNarrowRight } from 'react-icons/hi'
 import {
@@ -34,6 +35,13 @@ const MOCK_CONTACTS = [
 ]
 
 export const HeroSection = () => {
+  const handleContact = () => {
+    const goToContactSection = document.querySelector('#contact')
+    if (goToContactSection) {
+      goToContactSection.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <section className="flex w-full flex-col justify-end bg-hero-image bg-cover bg-center bg-no-repeat py-32 pb-10 sm:pb-32 lg:h-[755px] lg:pb-[110px]">
       <div className="container flex flex-col-reverse items-start justify-between lg:flex-row">
@@ -53,7 +61,7 @@ export const HeroSection = () => {
           </div>
 
           <div className="mt-6 flex flex-col sm:flex-row sm:items-center sm:gap-5 lg:mt-10">
-            <Button className="shadow-button">
+            <Button className="shadow-button" onClick={handleContact}>
               Entre em contato <HiArrowNarrowRight size={18} />
             </Button>
 

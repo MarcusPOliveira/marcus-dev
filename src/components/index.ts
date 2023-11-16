@@ -1,3 +1,4 @@
+export * from './back_to_top'
 export * from './button'
 export * from './contact_form'
 export * from './divider/horizontal'
