@@ -37,6 +37,11 @@ const nextConfig = {
         hostname: 'media.licdn.com',
         pathname: '**',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.projectmanager.com',
+        pathname: '**',
+      },
     ],
   }
  }
