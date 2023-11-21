@@ -1,13 +1,11 @@
 import { ReactNode } from 'react'
 
 import { getRelativeTimeString } from '@/utils'
+import { KnownTechs } from '@/types'
+import { CmsIcon } from '..'
 
 interface KnownTechProps {
-  tech: {
-    icon: ReactNode
-    name: string
-    startDate: string
-  }
+  tech: KnownTechs
 }
 
 export const KnownTech = ({ tech }: KnownTechProps) => {
@@ -20,7 +18,9 @@ export const KnownTech = ({ tech }: KnownTechProps) => {
     <div className="flex flex-col gap-2 rounded-lg bg-gray-600/20 p-6 text-gray-500 transition-all hover:bg-gray-600/30 hover:text-emerald-500">
       <div className="itens-center flex justify-between">
         <p className="font-medium">{tech.name}</p>
-        <span className="text-xl">{tech.icon}</span>
+        <span className="text-xl">
+          <CmsIcon icon={tech.iconSvg} />
+        </span>
       </div>
       <span>{relativeTime} de experiência</span>
     </div>

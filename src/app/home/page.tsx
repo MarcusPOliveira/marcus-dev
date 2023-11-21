@@ -51,7 +51,7 @@ const Home = async () => {
       <BackToTop />
       <Header />
       <HeroSection data={pageData} />
-      <Knowledge />
+      <Knowledge data={pageData.knownTechs} />
       <HighlightedProjects />
       <WorkExperience />
       <ContactForm />
