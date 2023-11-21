@@ -1,40 +1,15 @@
 'use client'
 import Image from 'next/image'
 import { HiArrowNarrowRight } from 'react-icons/hi'
-import {
-  TbBrandGithub,
-  TbBrandLinkedin,
-  TbBrandWhatsapp,
-  TbMail,
-} from 'react-icons/tb'
 
-import { Button, TechBadge } from '..'
+import { Button, CmsIcon, RichText, TechBadge } from '..'
+import { HomePageInfo } from '@/types'
 
-const MOCK_CONTACTS = [
-  {
-    name: 'GitHub',
-    url: 'https://github.com/MarcusPOliveira',
-    icon: <TbBrandGithub />,
-  },
-  {
-    name: 'Linkedin',
-    url: 'https://www.linkedin.com/in/marcus-paulo-oliveira-46b39b174/',
-    icon: <TbBrandLinkedin />,
-  },
-  {
-    name: 'Email',
-    url: 'mailto:mp.mp.oliveira@gmail.com',
-    icon: <TbMail />,
-  },
-  {
-    name: 'WhatsApp',
-    url: 'https://api.whatsapp.com/send?phone=5537998336732',
-    icon: <TbBrandWhatsapp />,
-  },
-  {},
-]
+interface HeroSectionProps {
+  data: HomePageInfo
+}
 
-export const HeroSection = () => {
+export const HeroSection = ({ data }: HeroSectionProps) => {
   const handleContact = () => {
     const goToContactSection = document.querySelector('#contact')
     if (goToContactSection) {
@@ -49,15 +24,15 @@ export const HeroSection = () => {
           <p className="font-mono text-emerald-400">Olá, meu nome é</p>
           <h2 className="mt-2 text-4xl font-medium">Marcus Paulo Oliveira</h2>
 
-          <p className="my-6 text-sm text-gray-400 sm:text-base">
-            Desenvolvedor Front-End Web/Mobile | Técnico em Informática -
-            Instituto Federal de Minas Gerais - Campus Formiga. Entusiasta de
-            novas tecnologias!
-          </p>
+          <div className="my-6 text-sm text-gray-400 sm:text-base">
+            <RichText content={data?.introduction?.raw} />
+          </div>
           <div className="flex flex-wrap gap-x-2 gap-y-3 lg:max-w-[340px]">
-            {Array.from({ length: 5 }).map((_, index) => (
-              <TechBadge name="NextJs" key={index} />
-            ))}
+            {Array.isArray(data?.techs) &&
+              data?.techs.length > 0 &&
+              data?.techs.map((tech, index) => (
+                <TechBadge key={`tech-${index}`} name={tech.name} />
+              ))}
           </div>
 
           <div className="mt-6 flex flex-col sm:flex-row sm:items-center sm:gap-5 lg:mt-10">
@@ -66,22 +41,24 @@ export const HeroSection = () => {
             </Button>
 
             <div className="flex h-20 items-center gap-3 text-2xl text-gray-600">
-              {MOCK_CONTACTS.map((contact, index) => (
-                <a
-                  href={contact.url}
-                  key={`contact-${index}`}
-                  target="_blank"
-                  className="transition-colors hover:text-gray-100"
-                >
-                  {contact.icon}
-                </a>
-              ))}
+              {Array.isArray(data?.socialMedias) &&
+                data?.socialMedias.length > 0 &&
+                data?.socialMedias.map((socialMedia, index) => (
+                  <a
+                    key={`socialMedia-${index}`}
+                    href={socialMedia.url}
+                    target="_blank"
+                    className="transition-colors hover:text-gray-100"
+                  >
+                    <CmsIcon icon={socialMedia.iconSvg} />
+                  </a>
+                ))}
             </div>
           </div>
         </div>
         <div>
           <Image
-            src="/images/foto.jpg"
+            src={data?.profilePicture?.url}
             width={420}
             height={404}
             alt="Avatar"

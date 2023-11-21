@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Poppins, IBM_Plex_Mono } from 'next/font/google'
 
-import { BackToTop } from '@/components'
 import './globals.css'
 
 const poppins = Poppins({
@@ -28,10 +27,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className={`${poppins.variable} ${plexMono.variable}`}>
-      <body className={poppins.className}>
-        <BackToTop />
-        {children}
-      </body>
+      <body className={poppins.className}>{children}</body>
     </html>
   )
 }

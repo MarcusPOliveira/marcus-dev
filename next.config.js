@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  env: {
+    HYGRAPH_URL: process.env.HYGRAPH_URL,
+    HYGRAPH_TOKEN: process.env.HYGRAPH_TOKEN
+  },
   async redirects() {
     return [
       {
