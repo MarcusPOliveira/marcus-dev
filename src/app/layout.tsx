@@ -27,6 +27,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className={`${poppins.variable} ${plexMono.variable}`}>
+      <head>
+        <title>marcus.dev</title>
+      </head>
       <body className={poppins.className}>{children}</body>
     </html>
   )

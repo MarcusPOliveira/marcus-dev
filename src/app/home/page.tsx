@@ -1,6 +1,7 @@
-/* eslint-disable @next/next/no-async-client-component */
 'use client'
-import { HomePageData } from '@/types'
+import { useEffect, useState } from 'react'
+
+import { HomePageData, HomePageInfo } from '@/types'
 import { fetchHygraphQuery } from '@/hygraph'
 
 import {
@@ -13,6 +14,7 @@ import {
   Knowledge,
   WorkExperience,
 } from '@/components'
+import { WorkExperience as WorkExperienceType } from '@/types/workExperienceTypes'
 
 const getPageData = async (): Promise<HomePageData> => {
   const query = `
@@ -36,6 +38,34 @@ const getPageData = async (): Promise<HomePageData> => {
         name
         startDate
       }
+      highlightProjects {
+        slug
+        thumbnail {
+          url
+        }
+        title
+        shortDescription
+        techs {
+          name
+        }
+        platform
+      }
+    }
+    workExperiences {
+      companyLogo {
+        url
+      }
+      role
+      companyName
+      companyUrl
+      startDate
+      endDate
+      description {
+        raw
+      }
+      techs {
+        name
+      }
     }
   }
 `
@@ -43,17 +73,35 @@ const getPageData = async (): Promise<HomePageData> => {
   return fetchHygraphQuery(query, 60 * 60 * 24) //24 hours to revalidate
 }
 
-const Home = async () => {
-  const { page: pageData } = await getPageData()
-  console.log('pageData hygraph', pageData)
+const Home = () => {
+  const [pageData, setPageData] = useState({} as HomePageInfo)
+  const [workExperiences, setWorkExperiences] = useState<WorkExperienceType[]>(
+    []
+  )
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+    const fetchData = async () => {
+      const { page: pageData, workExperiences } = await getPageData()
+      setPageData(pageData)
+      setWorkExperiences(workExperiences)
+      console.log('pageData hygraph', pageData)
+    }
+
+    fetchData()
+  }, [])
+
+  if (!isMounted) return null
+
   return (
     <div>
       <BackToTop />
       <Header />
-      <HeroSection data={pageData} />
-      <Knowledge data={pageData.knownTechs} />
-      <HighlightedProjects />
-      <WorkExperience />
+      <HeroSection homeInfo={pageData} />
+      <Knowledge techs={pageData?.knownTechs} />
+      <HighlightedProjects projects={pageData?.highlightProjects} />
+      <WorkExperience workExperiences={workExperiences} />
       <ContactForm />
       <Footer />
     </div>

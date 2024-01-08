@@ -6,10 +6,10 @@ import { Button, CmsIcon, RichText, TechBadge } from '..'
 import { HomePageInfo } from '@/types'
 
 interface HeroSectionProps {
-  data: HomePageInfo
+  homeInfo: HomePageInfo
 }
 
-export const HeroSection = ({ data }: HeroSectionProps) => {
+export const HeroSection = ({ homeInfo }: HeroSectionProps) => {
   const handleContact = () => {
     const goToContactSection = document.querySelector('#contact')
     if (goToContactSection) {
@@ -25,12 +25,12 @@ export const HeroSection = ({ data }: HeroSectionProps) => {
           <h2 className="mt-2 text-4xl font-medium">Marcus Paulo Oliveira</h2>
 
           <div className="my-6 text-sm text-gray-400 sm:text-base">
-            <RichText content={data?.introduction?.raw} />
+            <RichText content={homeInfo?.introduction?.raw} />
           </div>
           <div className="flex flex-wrap gap-x-2 gap-y-3 lg:max-w-[340px]">
-            {Array.isArray(data?.techs) &&
-              data?.techs.length > 0 &&
-              data?.techs.map((tech, index) => (
+            {Array.isArray(homeInfo?.techs) &&
+              homeInfo?.techs.length > 0 &&
+              homeInfo?.techs.map((tech, index) => (
                 <TechBadge key={`tech-${index}`} name={tech.name} />
               ))}
           </div>
@@ -41,9 +41,9 @@ export const HeroSection = ({ data }: HeroSectionProps) => {
             </Button>
 
             <div className="flex h-20 items-center gap-3 text-2xl text-gray-600">
-              {Array.isArray(data?.socialMedias) &&
-                data?.socialMedias.length > 0 &&
-                data?.socialMedias.map((socialMedia, index) => (
+              {Array.isArray(homeInfo?.socialMedias) &&
+                homeInfo?.socialMedias.length > 0 &&
+                homeInfo?.socialMedias.map((socialMedia, index) => (
                   <a
                     key={`socialMedia-${index}`}
                     href={socialMedia.url}
@@ -58,7 +58,7 @@ export const HeroSection = ({ data }: HeroSectionProps) => {
         </div>
         <div>
           <Image
-            src={data?.profilePicture?.url}
+            src={homeInfo?.profilePicture?.url}
             width={420}
             height={404}
             alt="Avatar"
