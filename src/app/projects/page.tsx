@@ -1,4 +1,9 @@
 'use client'
+import { useEffect, useState } from 'react'
+
+import { Project, ProjectsPageData } from '@/types'
+
+import { fetchHygraphQuery } from '@/hygraph'
 import {
   ContactForm,
   Footer,
@@ -7,12 +12,47 @@ import {
   ProjectsList,
 } from '@/components'
 
+const getPageData = async (): Promise<ProjectsPageData> => {
+  const query = `
+    query ProjectsQuery {
+      projects {
+        shortDescription
+        slug
+        title
+        thumbnail {
+          url
+        }
+        techs {
+          name
+        }
+        platform
+      }
+    }
+  `
+  return fetchHygraphQuery(query, 60 * 60 * 24) // 1 day
+}
+
 export default function Projects() {
+  const [projectsData, setProjectsData] = useState<Project[]>([])
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+    const fetchData = async () => {
+      const { projects } = await getPageData()
+      setProjectsData(projects)
+    }
+
+    fetchData()
+  }, [])
+
+  if (!isMounted) return null
+
   return (
     <div>
       <Header />
       <ProjectsIntroduction />
-      <ProjectsList />
+      <ProjectsList projects={projectsData} />
       <ContactForm />
       <Footer />
     </div>

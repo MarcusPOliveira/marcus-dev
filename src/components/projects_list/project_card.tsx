@@ -1,12 +1,20 @@
 import Image from 'next/image'
 
-export const ProjectCard = () => {
+import { Project } from '@/types'
+
+interface ProjectCardProps {
+  project: Project
+}
+
+export const ProjectCard = ({ project }: ProjectCardProps) => {
+  const techs = project.techs?.map((tech) => tech.name).join(', ')
+
   return (
     <div className="group flex h-[436px] flex-col overflow-hidden rounded-lg border-2 border-gray-800 bg-gray-800 opacity-70 transition-all hover:border-emerald-500 hover:opacity-100">
       <div className="h-48 w-full overflow-hidden">
         <Image
-          src="https://design4users.com/wp-content/uploads/2023/04/fitness-app-by-Odama.jpg"
-          alt="Thumbnail do projeto"
+          src={project.thumbnail?.url}
+          alt={`Thumbnail do projeto ${project.title}`}
           width={380}
           height={200}
           unoptimized
@@ -15,15 +23,13 @@ export const ProjectCard = () => {
       </div>
       <div className="flex flex-1 flex-col p-8">
         <strong className="font-medium text-gray-50/90 transition-all group-hover:text-emerald-500">
-          Nome do Projeto
+          {project.title}
         </strong>
         <p className="mt-2 line-clamp-4 text-gray-400">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-          voluptas nam aliquid voluptatibus sapiente quam, ipsum ducimus quod
-          eligendi quibusdam!
+          {project.shortDescription}
         </p>
         <span className="mt-auto block truncate text-sm font-medium text-gray-300">
-          Nextjs, Nextjs, Nextjs, Nextjs, Nextjs, Nextjs, Nextjs
+          {techs}
         </span>
       </div>
     </div>

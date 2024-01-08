@@ -1,5 +1,15 @@
 import type { RichTextContent } from '@graphcms/rich-text-types'
 
+export interface ProjectsPageData {
+  projects: Project[]
+}
+
+export interface ProjectsPageStaticData {
+  projects: {
+    slug: string
+  }[]
+}
+
 export interface KnownTechs {
   iconSvg: string
   name: string
