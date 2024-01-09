@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 
 import { Project } from '@/types'
 
-import { getProjectDetails } from './project-data'
+import { fetchHygraphQuery } from '@/hygraph'
 import {
   ContactForm,
   Footer,
@@ -18,44 +18,44 @@ export interface ProjectProps {
   }
 }
 
-// const getProjectDetails = async (slug: string): Promise<Project> => {
-//   const query = `
-//   query ProjectQuery() {
-//     project(where: {slug: "${slug}"}) {
-//       pageThumbnail {
-//         url
-//       }
-//       thumbnail {
-//         url
-//       }
-//       sections {
-//         title
-//         image {
-//           url
-//         }
-//       }
-//       title
-//       shortDescription
-//       description {
-//         raw
-//         text
-//       }
-//       techs {
-//         name
-//       }
-//       liveProjectUrl
-//       githubUrl
-//       platform
-//     }
-//   }
-//   `
-//   const data = fetchHygraphQuery<Project>(
-//     query,
-//     1000 * 60 * 60 * 24 // 1 day
-//   )
+const getProjectDetails = async (slug: string): Promise<Project> => {
+  const query = `
+  query ProjectQuery() {
+    project(where: {slug: "${slug}"}) {
+      pageThumbnail {
+        url
+      }
+      thumbnail {
+        url
+      }
+      sections {
+        title
+        image {
+          url
+        }
+      }
+      title
+      shortDescription
+      description {
+        raw
+        text
+      }
+      techs {
+        name
+      }
+      liveProjectUrl
+      githubUrl
+      platform
+    }
+  }
+  `
+  const data = fetchHygraphQuery<Project>(
+    query,
+    1000 * 60 * 60 * 24 // 1 day
+  )
 
-//   return data
-// }
+  return data
+}
 
 export default function Project({ params: { slug } }: ProjectProps) {
   const [projectData, setProjectData] = useState<any>({})
@@ -86,16 +86,3 @@ export default function Project({ params: { slug } }: ProjectProps) {
     </div>
   )
 }
-
-// export async function generateStaticParams() {
-//   const query = `
-//     query ProjectsSlugsQuery {
-//       projects(first: 100) {
-//         slug
-//       }
-//     }
-//   `
-
-//   const { projects } = await fetchHygraphQuery<ProjectsPageStaticData>(query)
-//   return projects
-// }

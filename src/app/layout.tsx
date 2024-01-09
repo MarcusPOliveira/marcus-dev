@@ -17,12 +17,12 @@ const plexMono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Home | marcus.dev',
+    default: 'marcus.dev',
     template: '%s | marcus.dev',
   },
   icons: [
     {
-      url: '/favicon-32x32.png',
+      url: '/favicon.svg',
     },
   ],
 }
