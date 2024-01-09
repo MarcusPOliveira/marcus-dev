@@ -20,11 +20,11 @@ export const metadata: Metadata = {
     default: 'marcus.dev',
     template: '%s | marcus.dev',
   },
-  icons: [
-    {
-      url: '/favicon.svg',
-    },
-  ],
+  // icons: [
+  //   {
+  //     url: '/favicon.svg',
+  //   },
+  // ],
 }
 
 export default function RootLayout({
