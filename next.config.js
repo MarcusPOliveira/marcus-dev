@@ -46,6 +46,11 @@ const nextConfig = {
         hostname: 'www.projectmanager.com',
         pathname: '**',
       },
+      {
+        protocol: 'https',
+        hostname: 'app.hygraph.com',
+        pathname: '**',
+      }
     ],
   }
  }
