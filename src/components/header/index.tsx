@@ -20,7 +20,7 @@ export const Header = () => {
     <header className="absolute top-0 z-10 flex h-24 w-full items-center justify-center">
       <div className="container flex items-center justify-between">
         <Link href="/">
-          <Image width={58} height={49} src="/images/logo.svg" alt="Logo" />
+          <Image width={200} height={180} src="/images/logo.svg" alt="Logo" />
         </Link>
         <nav className="flex items-center gap-4 md:gap-10">
           {NAV_ITEMS.map((item) => (

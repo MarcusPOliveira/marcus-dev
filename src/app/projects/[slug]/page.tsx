@@ -1,9 +1,9 @@
 'use client'
 import { useEffect, useState } from 'react'
 
-import { Project, ProjectsPageStaticData } from '@/types'
+import { Project } from '@/types'
 
-import { fetchHygraphQuery } from '@/hygraph'
+import { getProjectDetails } from './project-data'
 import {
   ContactForm,
   Footer,
@@ -12,50 +12,50 @@ import {
   ProjectTemplates,
 } from '@/components'
 
-interface ProjectProps {
+export interface ProjectProps {
   params: {
     slug: string
   }
 }
 
-const getProjectDetails = async (slug: string): Promise<Project> => {
-  const query = `
-  query ProjectQuery() {
-    project(where: {slug: "${slug}"}) {
-      pageThumbnail {
-        url
-      }
-      thumbnail {
-        url
-      }
-      sections {
-        title
-        image {
-          url
-        }
-      }
-      title
-      shortDescription
-      description {
-        raw
-        text
-      }
-      techs {
-        name
-      }
-      liveProjectUrl
-      githubUrl
-      platform
-    }
-  }
-  `
-  const data = fetchHygraphQuery<Project>(
-    query,
-    1000 * 60 * 60 * 24 // 1 day
-  )
+// const getProjectDetails = async (slug: string): Promise<Project> => {
+//   const query = `
+//   query ProjectQuery() {
+//     project(where: {slug: "${slug}"}) {
+//       pageThumbnail {
+//         url
+//       }
+//       thumbnail {
+//         url
+//       }
+//       sections {
+//         title
+//         image {
+//           url
+//         }
+//       }
+//       title
+//       shortDescription
+//       description {
+//         raw
+//         text
+//       }
+//       techs {
+//         name
+//       }
+//       liveProjectUrl
+//       githubUrl
+//       platform
+//     }
+//   }
+//   `
+//   const data = fetchHygraphQuery<Project>(
+//     query,
+//     1000 * 60 * 60 * 24 // 1 day
+//   )
 
-  return data
-}
+//   return data
+// }
 
 export default function Project({ params: { slug } }: ProjectProps) {
   const [projectData, setProjectData] = useState<any>({})
@@ -70,8 +70,6 @@ export default function Project({ params: { slug } }: ProjectProps) {
 
     fetchData()
   }, [slug])
-
-  console.log('projectData hygraph', projectData)
 
   if (!isMounted) return null
 
