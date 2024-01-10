@@ -1,8 +1,9 @@
 'use client'
 import Image from 'next/image'
 import { HiArrowNarrowRight } from 'react-icons/hi'
+import { RichText } from '@graphcms/rich-text-react-renderer'
 
-import { Button, CmsIcon, RichText, TechBadge } from '..'
+import { Button, CmsIcon, TechBadge } from '..'
 import { HomePageInfo } from '@/types'
 
 interface HeroSectionProps {
@@ -17,6 +18,8 @@ export const HeroSection = ({ homeInfo }: HeroSectionProps) => {
     }
   }
 
+  console.log('homeInfo', homeInfo.introduction)
+
   return (
     <section className="flex w-full flex-col justify-end bg-hero-image bg-cover bg-center bg-no-repeat py-32 pb-10 sm:pb-32 lg:h-[755px] lg:pb-[110px]">
       <div className="container flex flex-col-reverse items-start justify-between lg:flex-row">
@@ -24,9 +27,11 @@ export const HeroSection = ({ homeInfo }: HeroSectionProps) => {
           <p className="font-mono text-emerald-400">Olá, meu nome é</p>
           <h2 className="mt-2 text-4xl font-medium">Marcus Paulo Oliveira</h2>
 
-          <div className="my-6 text-sm text-gray-400 sm:text-base">
-            <RichText content={homeInfo?.introduction?.raw} />
-          </div>
+          {homeInfo?.introduction?.raw && (
+            <div className="my-6 text-sm text-gray-400 sm:text-base">
+              <RichText content={homeInfo.introduction.raw} />
+            </div>
+          )}
           <div className="flex flex-wrap gap-x-2 gap-y-3 lg:max-w-[340px]">
             {Array.isArray(homeInfo?.techs) &&
               homeInfo?.techs.length > 0 &&

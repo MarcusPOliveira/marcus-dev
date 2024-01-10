@@ -2,8 +2,9 @@
 import { useEffect, useState } from 'react'
 
 import { HomePageData, HomePageInfo } from '@/types'
-import { fetchHygraphQuery } from '@/hygraph'
+import { WorkExperience as WorkExperienceType } from '@/types/workExperienceTypes'
 
+import { fetchHygraphQuery } from '@/hygraph'
 import {
   BackToTop,
   ContactForm,
@@ -14,7 +15,6 @@ import {
   Knowledge,
   WorkExperience,
 } from '@/components'
-import { WorkExperience as WorkExperienceType } from '@/types/workExperienceTypes'
 
 const getPageData = async (): Promise<HomePageData> => {
   const query = `
@@ -86,7 +86,6 @@ const Home = () => {
       const { page: pageData, workExperiences } = await getPageData()
       setPageData(pageData)
       setWorkExperiences(workExperiences)
-      console.log('pageData hygraph', pageData)
     }
 
     fetchData()

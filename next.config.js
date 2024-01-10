@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   env: {
     HYGRAPH_URL: process.env.HYGRAPH_URL,
     HYGRAPH_TOKEN: process.env.HYGRAPH_TOKEN
@@ -49,6 +49,11 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'app.hygraph.com',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'api-sa-east-1.hygraph.com',
         pathname: '**',
       }
     ],

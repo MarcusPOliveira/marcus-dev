@@ -21,9 +21,7 @@ export const ContactForm = () => {
 
   const message = watch('message')
 
-  const onSubmit = (data: ContactFormData) => {
-    console.log('data', data)
-  }
+  const onSubmit = (data: ContactFormData) => {}
 
   return (
     <section
