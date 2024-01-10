@@ -25,7 +25,9 @@ export const ProjectDetails = ({ project }: ProjectDetailsProps) => {
         className="items-center text-center sm:[&>h3]:text-4xl"
       />
       <div className="my-4 max-w-[640px] text-center text-sm text-gray-400 sm:my-6 sm:text-base">
-        <RichText content={project?.description?.raw} />
+        {project?.description?.raw && (
+          <RichText content={project?.description?.raw} />
+        )}
       </div>
 
       <div className="flex w-full max-w-[330px] flex-wrap items-center justify-center gap-2">

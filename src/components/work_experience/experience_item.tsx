@@ -70,7 +70,9 @@ export const ExperienceItem = ({ experience }: ExperienceItemProps) => {
             {formattedStartDate} - {formattedEndDate} - ({formattedDuration})
           </span>
           <div className="text-gray-400">
-            <RichText content={experience.description.raw} />
+            {experience.description.raw && (
+              <RichText content={experience.description.raw} />
+            )}
           </div>
         </div>
         <p className="mb-3 mt-6 text-sm font-semibold text-gray-400">

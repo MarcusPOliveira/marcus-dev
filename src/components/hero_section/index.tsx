@@ -1,9 +1,8 @@
 'use client'
 import Image from 'next/image'
 import { HiArrowNarrowRight } from 'react-icons/hi'
-import { RichText } from '@graphcms/rich-text-react-renderer'
 
-import { Button, CmsIcon, TechBadge } from '..'
+import { Button, CmsIcon, RichText, TechBadge } from '..'
 import { HomePageInfo } from '@/types'
 
 interface HeroSectionProps {
