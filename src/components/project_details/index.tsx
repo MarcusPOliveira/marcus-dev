@@ -16,7 +16,7 @@ export const ProjectDetails = ({ project }: ProjectDetailsProps) => {
       <div
         className="absolute inset-0 z-[-1]"
         style={{
-          background: `url(/images/hero-bg.png) no-repeat center/cover, url(${project?.thumbnail?.url})`,
+          background: `url(/images/hero-bg-dark.png) no-repeat center/cover, url(${project?.thumbnail?.url})`,
         }}
       />
       <SectionTitle

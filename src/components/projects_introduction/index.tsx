@@ -4,7 +4,7 @@ import { Link, SectionTitle } from '..'
 
 export const ProjectsIntroduction = () => {
   return (
-    <section className="flex h-[450px] w-full flex-col items-center justify-center bg-hero-image bg-cover bg-no-repeat px-2 lg:h-[630px]">
+    <section className="bg-hero-image-dark flex h-[450px] w-full flex-col items-center justify-center bg-cover bg-no-repeat px-2 lg:h-[630px]">
       <SectionTitle
         title="Meus Projetos"
         subtitle="projetos"

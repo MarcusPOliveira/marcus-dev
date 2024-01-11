@@ -1,11 +1,18 @@
-interface TechBadgeProps {
+'use client'
+import { motion } from 'framer-motion'
+import { ComponentProps } from 'react'
+
+interface TechBadgeProps extends ComponentProps<typeof motion.span> {
   name: string
 }
 
-export const TechBadge = ({ name }: TechBadgeProps) => {
+export const TechBadge = ({ name, ...props }: TechBadgeProps) => {
   return (
-    <span className="rounded-lg bg-emerald-900/80 px-3 py-1 text-sm text-emerald-400">
+    <motion.span
+      className="rounded-lg bg-orange-900/80 px-3 py-1 text-sm text-orange-600"
+      {...props}
+    >
       {name}
-    </span>
+    </motion.span>
   )
 }

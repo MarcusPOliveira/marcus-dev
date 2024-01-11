@@ -13,6 +13,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         'hero-image': "url('/images/hero-bg.png')",
+        'hero-image-dark': "url('/images/hero-bg-dark.png')",
       },
       fontFamily: {
         mono: ['var(--font-plex-mono)', 'monospace'],

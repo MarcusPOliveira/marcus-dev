@@ -43,7 +43,7 @@ export const ContactForm = () => {
           <div className="flex flex-col gap-2">
             <textarea
               placeholder="Sua mensagem"
-              className="h-[138px] w-full resize-none rounded-lg bg-gray-800 p-4 text-gray-50 outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-emerald-600"
+              className="h-[138px] w-full resize-none rounded-lg bg-gray-800 p-4 text-gray-50 outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-orange-600"
               maxLength={1000}
               {...register('message')}
             />

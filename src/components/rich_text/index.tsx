@@ -12,13 +12,13 @@ export const RichText = ({ ...props }: RichTextProps) => {
           <b className="font-medium text-gray-50">{children}</b>
         ),
         ul: ({ children }) => (
-          <ul className="flex-col gap-1 pl-2 list-disc list-inside">
+          <ul className="list-inside list-disc flex-col gap-1 pl-2">
             {children}
           </ul>
         ),
         a: ({ children, ...props }) => (
           <a
-            className="underline transition-colors hover:text-emerald-400"
+            className="underline transition-colors hover:text-orange-600"
             {...props}
           >
             {children}

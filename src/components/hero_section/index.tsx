@@ -1,6 +1,7 @@
 'use client'
 import Image from 'next/image'
 import { HiArrowNarrowRight } from 'react-icons/hi'
+import { motion } from 'framer-motion'
 
 import { Button, CmsIcon, RichText, TechBadge } from '..'
 import { HomePageInfo } from '@/types'
@@ -20,10 +21,16 @@ export const HeroSection = ({ homeInfo }: HeroSectionProps) => {
   console.log('homeInfo', homeInfo.introduction)
 
   return (
-    <section className="flex w-full flex-col justify-end bg-hero-image bg-cover bg-center bg-no-repeat py-32 pb-10 sm:pb-32 lg:h-[755px] lg:pb-[110px]">
+    <section className="flex w-full flex-col justify-end bg-hero-image-dark bg-cover bg-center bg-no-repeat py-32 pb-10 sm:pb-32 lg:h-[755px] lg:pb-[110px]">
       <div className="container flex flex-col-reverse items-start justify-between lg:flex-row">
-        <div className="w-full lg:max-w-[430px]">
-          <p className="font-mono text-emerald-400">Olá, meu nome é</p>
+        <motion.div
+          className="w-full lg:max-w-[430px]"
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -100 }}
+          transition={{ duration: 0.5 }}
+        >
+          <p className="font-mono text-orange-600">Olá, meu nome é</p>
           <h2 className="mt-2 text-4xl font-medium">Marcus Paulo Oliveira</h2>
 
           {homeInfo?.introduction?.raw && (
@@ -35,7 +42,14 @@ export const HeroSection = ({ homeInfo }: HeroSectionProps) => {
             {Array.isArray(homeInfo?.techs) &&
               homeInfo?.techs.length > 0 &&
               homeInfo?.techs.map((tech, index) => (
-                <TechBadge key={`tech-${index}`} name={tech.name} />
+                <TechBadge
+                  key={`intro-tech-${index}`}
+                  name={tech.name}
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                />
               ))}
           </div>
 
@@ -59,8 +73,14 @@ export const HeroSection = ({ homeInfo }: HeroSectionProps) => {
                 ))}
             </div>
           </div>
-        </div>
-        <div>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 200, scale: 0.5 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 200, scale: 0.5 }}
+          transition={{ duration: 0.5 }}
+          className="origin-center"
+        >
           <Image
             src={homeInfo?.profilePicture?.url}
             width={420}
@@ -68,7 +88,7 @@ export const HeroSection = ({ homeInfo }: HeroSectionProps) => {
             alt="Avatar"
             className="mb-6 h-[280px] w-[280px] rounded-lg object-cover shadow-2xl lg:mb-0 lg:h-[404px] lg:w-[420px]"
           />
-        </div>
+        </motion.div>
       </div>
     </section>
   )
