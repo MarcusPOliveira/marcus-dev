@@ -21,11 +21,11 @@ export const WorkExperience = ({ workExperiences }: WorkExperienceProps) => {
           title="Experiências Profissionais"
           subtitle="experiências"
         />
-        <p className="mt-6 text-gray-400">
+        {/* <p className="mt-6 text-gray-400">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
           tempora, non sapiente dolorum praesentium laboriosam delectus quaerat
           commodi autem accusamus.
-        </p>
+        </p> */}
       </div>
 
       <div className="flex flex-col gap-4">
