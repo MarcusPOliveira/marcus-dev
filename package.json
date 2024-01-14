@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.12.1",
     "@graphcms/rich-text-react-renderer": "^0.6.1",
     "@hookform/resolvers": "^3.3.2",
     "axios": "^1.6.1",

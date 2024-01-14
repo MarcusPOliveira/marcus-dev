@@ -1,27 +1,64 @@
 'use client'
+import { useState } from 'react'
 import { HiArrowNarrowRight } from 'react-icons/hi'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
+import { SubmitErrorHandler, useForm } from 'react-hook-form'
+import emailjs from '@emailjs/browser'
 
 import { Button, Input, SectionTitle } from '..'
+import { FiLoader } from 'react-icons/fi'
 
 const contactFormSchema = z.object({
   name: z.string().min(3).max(100),
   email: z.string().email(),
-  message: z.string().min(3).max(1000),
+  message: z.string().min(1).max(1000),
 })
 
 interface ContactFormData extends z.infer<typeof contactFormSchema> {}
 
 export const ContactForm = () => {
-  const { handleSubmit, register, watch } = useForm<ContactFormData>({
+  const [isLoading, setIsLoading] = useState(false)
+  const { handleSubmit, register, watch, reset } = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
   })
 
   const message = watch('message')
 
-  const onSubmit = (data: ContactFormData) => {}
+  const onSubmit = async (data: ContactFormData) => {
+    try {
+      setIsLoading(true)
+
+      const templateParams = {
+        from_name: data.name,
+        email: data.email,
+        message: data.message,
+      }
+
+      emailjs
+        .send(
+          process.env.EMAILJS_SERVICE_ID!,
+          process.env.EMAILJS_TEMPLATE_ID!,
+          templateParams,
+          process.env.EMAILJS_PUBLIC_KEY!
+        )
+        .then(() => {
+          alert('Mensagem enviada com sucesso!')
+          reset()
+        })
+        .catch((err) => {
+          throw new Error(err)
+        })
+    } catch (err) {
+      console.error('err', err)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const onError: SubmitErrorHandler<ContactFormData> = (errors, e) => {
+    console.error(errors)
+  }
 
   return (
     <section
@@ -36,7 +73,7 @@ export const ContactForm = () => {
         />
         <form
           className="mt-12 flex w-full flex-col gap-4"
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(onSubmit, onError)}
         >
           <Input placeholder="Seu nome" type="text" {...register('name')} />
           <Input placeholder="Seu email" type="email" {...register('email')} />
@@ -51,9 +88,20 @@ export const ContactForm = () => {
               {message?.length ? message.length : '0'}/1000
             </p>
           </div>
-          <Button type="submit" className="mx-auto mt-6 w-max shadow-button">
-            Enviar mensagem
-            <HiArrowNarrowRight />
+          <Button
+            type="submit"
+            className={`mx-auto mt-6 ${
+              isLoading ? 'h-12 w-[201px]' : 'w-max'
+            } shadow-button`}
+          >
+            {isLoading ? (
+              <FiLoader className="animate-spin" />
+            ) : (
+              <>
+                Enviar mensagem
+                <HiArrowNarrowRight />
+              </>
+            )}
           </Button>
         </form>
       </div>
