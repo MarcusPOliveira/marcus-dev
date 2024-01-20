@@ -84,6 +84,7 @@ export const HeroSection = ({ homeInfo }: HeroSectionProps) => {
               src={homeInfo?.profilePicture?.url}
               width={420}
               height={404}
+              priority
               alt="Avatar"
               className="mb-6 h-[280px] w-[280px] rounded-lg object-cover shadow-2xl lg:mb-0 lg:h-[404px] lg:w-[420px]"
             />

@@ -13,7 +13,6 @@ export const useLoading = (dependencies: any[] = []) => {
     const allDependenciesLoaded: boolean = dependenciesRef.current.every(
       (dep) => dep !== undefined && dep !== null
     )
-    console.log('allDependenciesLoaded', allDependenciesLoaded)
     if (allDependenciesLoaded) {
       timerRef.current = setTimeout(() => {
         setIsLoading(false)
