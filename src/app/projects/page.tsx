@@ -39,7 +39,7 @@ export default function Projects() {
   const [projectsData, setProjectsData] = useState<Project[]>([])
   const [isMounted, setIsMounted] = useState(false)
 
-  const { isLoading } = useLoading(projectsData)
+  const { isLoading } = useLoading([projectsData])
 
   useEffect(() => {
     setIsMounted(true)

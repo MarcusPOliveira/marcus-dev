@@ -64,7 +64,7 @@ export default function Project({ params: { slug } }: ProjectProps) {
   const [isMounted, setIsMounted] = useState(false)
   const [projectData, setProjectData] = useState<any>({})
 
-  const { isLoading } = useLoading(projectData)
+  const { isLoading } = useLoading([projectData])
 
   useEffect(() => {
     setIsMounted(true)
