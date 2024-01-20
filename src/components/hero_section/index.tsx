@@ -18,8 +18,6 @@ export const HeroSection = ({ homeInfo }: HeroSectionProps) => {
     }
   }
 
-  console.log('homeInfo', homeInfo.introduction)
-
   return (
     <section className="flex w-full flex-col justify-end bg-hero-image-dark bg-cover bg-center bg-no-repeat py-32 pb-10 sm:pb-32 lg:h-[755px] lg:pb-[110px]">
       <div className="container flex flex-col-reverse items-start justify-between lg:flex-row">
@@ -81,13 +79,15 @@ export const HeroSection = ({ homeInfo }: HeroSectionProps) => {
           transition={{ duration: 0.5 }}
           className="origin-center"
         >
-          <Image
-            src={homeInfo?.profilePicture?.url}
-            width={420}
-            height={404}
-            alt="Avatar"
-            className="mb-6 h-[280px] w-[280px] rounded-lg object-cover shadow-2xl lg:mb-0 lg:h-[404px] lg:w-[420px]"
-          />
+          {homeInfo?.profilePicture?.url && (
+            <Image
+              src={homeInfo?.profilePicture?.url}
+              width={420}
+              height={404}
+              alt="Avatar"
+              className="mb-6 h-[280px] w-[280px] rounded-lg object-cover shadow-2xl lg:mb-0 lg:h-[404px] lg:w-[420px]"
+            />
+          )}
         </motion.div>
       </div>
     </section>
