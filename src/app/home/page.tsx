@@ -13,6 +13,7 @@ import {
   HeroSection,
   HighlightedProjects,
   Knowledge,
+  Loading,
   WorkExperience,
 } from '@/components'
 
@@ -74,11 +75,12 @@ const getPageData = async (): Promise<HomePageData> => {
 }
 
 const Home = () => {
+  const [isMounted, setIsMounted] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const [pageData, setPageData] = useState({} as HomePageInfo)
   const [workExperiences, setWorkExperiences] = useState<WorkExperienceType[]>(
     []
   )
-  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
     setIsMounted(true)
@@ -89,11 +91,17 @@ const Home = () => {
     }
 
     fetchData()
-  }, [])
+
+    setTimeout(() => {
+      if (isMounted && pageData) setIsLoading(false)
+    }, 2000)
+  }, [isMounted, pageData])
 
   if (!isMounted) return null
 
-  return (
+  return isLoading ? (
+    <Loading />
+  ) : (
     <div>
       <BackToTop />
       <Header />
