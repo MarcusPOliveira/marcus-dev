@@ -34,13 +34,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
       exit={{ opacity: 0, y: 100 }}
       transition={{ duration: 0.5 }}
     >
-      <motion.div
-        className="h-[200px] w-full sm:h-[300px] lg:min-h-full lg:w-[420px]"
-        initial={{ opacity: 0, y: 100, scale: 0.5 }}
-        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: 100, scale: 0.5 }}
-        transition={{ duration: 0.5, delay: 0.5 }}
-      >
+      <motion.div className="h-[200px] w-full sm:h-[300px] lg:min-h-full lg:w-[420px]">
         <Image
           src={project.thumbnail?.url}
           alt="Thumbnail do projeto"
