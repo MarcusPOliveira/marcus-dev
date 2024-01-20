@@ -3,11 +3,14 @@ import { useEffect, useState } from 'react'
 
 import { Project } from '@/types'
 
+import { useLoading } from '@/hooks'
 import { fetchHygraphQuery } from '@/hygraph'
+
 import {
   ContactForm,
   Footer,
   Header,
+  Loading,
   ProjectDetails,
   ProjectTemplates,
 } from '@/components'
@@ -58,8 +61,10 @@ const getProjectDetails = async (slug: string): Promise<Project> => {
 }
 
 export default function Project({ params: { slug } }: ProjectProps) {
-  const [projectData, setProjectData] = useState<any>({})
   const [isMounted, setIsMounted] = useState(false)
+  const [projectData, setProjectData] = useState<any>({})
+
+  const { isLoading } = useLoading(projectData)
 
   useEffect(() => {
     setIsMounted(true)
@@ -73,7 +78,9 @@ export default function Project({ params: { slug } }: ProjectProps) {
 
   if (!isMounted) return null
 
-  return (
+  return isLoading ? (
+    <Loading />
+  ) : (
     <div>
       <Header />
       <ProjectDetails project={projectData?.project} />

@@ -3,11 +3,14 @@ import { useEffect, useState } from 'react'
 
 import { Project, ProjectsPageData } from '@/types'
 
+import { useLoading } from '@/hooks'
 import { fetchHygraphQuery } from '@/hygraph'
+
 import {
   ContactForm,
   Footer,
   Header,
+  Loading,
   ProjectsIntroduction,
   ProjectsList,
 } from '@/components'
@@ -36,6 +39,8 @@ export default function Projects() {
   const [projectsData, setProjectsData] = useState<Project[]>([])
   const [isMounted, setIsMounted] = useState(false)
 
+  const { isLoading } = useLoading(projectsData)
+
   useEffect(() => {
     setIsMounted(true)
     const fetchData = async () => {
@@ -48,7 +53,9 @@ export default function Projects() {
 
   if (!isMounted) return null
 
-  return (
+  return isLoading ? (
+    <Loading />
+  ) : (
     <div>
       <Header />
       <ProjectsIntroduction />

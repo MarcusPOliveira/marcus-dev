@@ -4,7 +4,9 @@ import { useEffect, useState } from 'react'
 import { HomePageData, HomePageInfo } from '@/types'
 import { WorkExperience as WorkExperienceType } from '@/types/workExperienceTypes'
 
+import { useLoading } from '@/hooks'
 import { fetchHygraphQuery } from '@/hygraph'
+
 import {
   BackToTop,
   ContactForm,
@@ -76,11 +78,12 @@ const getPageData = async (): Promise<HomePageData> => {
 
 const Home = () => {
   const [isMounted, setIsMounted] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
   const [pageData, setPageData] = useState({} as HomePageInfo)
   const [workExperiences, setWorkExperiences] = useState<WorkExperienceType[]>(
     []
   )
+
+  const { isLoading } = useLoading([pageData, workExperiences])
 
   useEffect(() => {
     setIsMounted(true)
@@ -91,11 +94,7 @@ const Home = () => {
     }
 
     fetchData()
-
-    setTimeout(() => {
-      if (isMounted && pageData) setIsLoading(false)
-    }, 2000)
-  }, [isMounted, pageData])
+  }, [])
 
   if (!isMounted) return null
 
