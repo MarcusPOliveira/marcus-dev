@@ -9,6 +9,7 @@ export const Loading = () => {
         animationData={LoadingAnimation}
         autoplay
         loop
+        className="lg:h-1/2 lg:w-1/2"
         height={200}
         width={200}
       />
