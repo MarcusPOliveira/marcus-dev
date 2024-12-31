@@ -19,7 +19,7 @@ export const HeroSection = ({ homeInfo }: HeroSectionProps) => {
   }
 
   return (
-    <section className="flex w-full flex-col justify-end bg-hero-image-dark bg-cover bg-center bg-no-repeat py-32 pb-10 sm:pb-32 lg:h-[755px] lg:pb-[110px]">
+    <section className="flex w-full flex-col justify-end bg-hero-image-dark bg-cover bg-center bg-no-repeat py-32 pb-10 sm:pb-32 lg:max-h-[900px] lg:min-h-[755px] lg:pb-[32px]">
       <div className="container flex flex-col-reverse items-start justify-between lg:flex-row">
         <motion.div
           className="w-full lg:max-w-[430px]"
@@ -51,12 +51,12 @@ export const HeroSection = ({ homeInfo }: HeroSectionProps) => {
               ))}
           </div>
 
-          <div className="mt-6 flex flex-col sm:flex-row sm:items-center sm:gap-5 lg:mt-10">
+          <div className="flex flex-col mt-6 sm:flex-row sm:items-center sm:gap-5 lg:mt-10">
             <Button className="shadow-button" onClick={handleContact}>
               Entre em contato <HiArrowNarrowRight size={18} />
             </Button>
 
-            <div className="flex h-20 items-center gap-3 text-2xl text-gray-600">
+            <div className="flex items-center h-20 gap-3 text-2xl text-gray-600">
               {Array.isArray(homeInfo?.socialMedias) &&
                 homeInfo?.socialMedias.length > 0 &&
                 homeInfo?.socialMedias.map((socialMedia, index) => (
