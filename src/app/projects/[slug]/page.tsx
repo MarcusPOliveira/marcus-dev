@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 
-import { Project } from '@/types'
+import type { Project } from '@/types'
 
 import { useLoading } from '@/hooks'
 import { fetchHygraphQuery } from '@/hygraph'

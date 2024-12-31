@@ -24,7 +24,7 @@ export const ProjectDetails = ({ project }: ProjectDetailsProps) => {
         subtitle="detalhes"
         className="items-center text-center sm:[&>h3]:text-4xl"
       />
-      <div className="my-4 max-w-[640px] text-center text-sm text-gray-400 sm:my-6 sm:text-base">
+      <div className="my-4 max-w-[640px] text-sm text-gray-400 sm:my-6 sm:text-base">
         {project?.description?.raw && (
           <RichText content={project?.description?.raw} />
         )}
@@ -36,7 +36,7 @@ export const ProjectDetails = ({ project }: ProjectDetailsProps) => {
         ))}
       </div>
 
-      <div className="my-6 flex flex-col items-center gap-2 sm:my-12 sm:flex-row sm:gap-4">
+      <div className="flex flex-col items-center gap-2 my-6 sm:my-12 sm:flex-row sm:gap-4">
         {project?.githubUrl && (
           <a href={project.githubUrl} target="_blank">
             <Button className="min-w-[180px]">
