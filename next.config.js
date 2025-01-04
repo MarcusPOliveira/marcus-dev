@@ -58,6 +58,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'api-sa-east-1.hygraph.com',
         pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'sa-east-1.graphassets.com',
+        pathname: '**',
       }
     ],
   }
