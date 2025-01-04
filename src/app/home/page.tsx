@@ -36,7 +36,7 @@ const getPageData = async (): Promise<HomePageData> => {
         url
         iconSvg
       }
-      knownTechs {
+      knownTechs(first: 100) {
         iconSvg
         name
         startDate
@@ -89,6 +89,7 @@ const Home = () => {
     setIsMounted(true)
     const fetchData = async () => {
       const { page: pageData, workExperiences } = await getPageData()
+
       setPageData(pageData)
       setWorkExperiences(workExperiences)
     }
