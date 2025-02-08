@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Poppins, IBM_Plex_Mono } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/react'
 
 import './globals.css'
 
@@ -34,7 +35,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className={`${poppins.variable} ${plexMono.variable}`}>
-      <body className={poppins.className}>{children}</body>
+      <body className={poppins.className}>
+        {children}
+        <Analytics />
+      </body>
     </html>
   )
 }
