@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useTranslations, useLocale } from 'next-intl'
+import { HiHome, HiViewGrid } from 'react-icons/hi'
 
 import { NavItem } from './nav_item'
 import { LanguageSelector } from '../language_selector'
@@ -15,10 +16,12 @@ export const Header = () => {
     {
       label: t('home'),
       href: `/${locale}/home`,
+      icon: <HiHome />,
     },
     {
       label: t('projects'),
       href: `/${locale}/projects`,
+      icon: <HiViewGrid />,
     },
   ]
 
@@ -42,7 +45,7 @@ export const Header = () => {
         </Link>
         <nav className="flex items-center gap-4 md:gap-10">
           {NAV_ITEMS.map((item) => (
-            <NavItem key={item.label} {...item} />
+            <NavItem key={item.label} label={item.label} href={item.href} icon={item.icon} />
           ))}
           <LanguageSelector />
         </nav>
