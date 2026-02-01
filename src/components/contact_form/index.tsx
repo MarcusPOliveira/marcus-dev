@@ -5,6 +5,7 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SubmitErrorHandler, useForm } from 'react-hook-form'
 import emailjs from '@emailjs/browser'
+import { useTranslations } from 'next-intl'
 
 import { Button, Input, SectionTitle } from '..'
 import { FiLoader } from 'react-icons/fi'
@@ -18,6 +19,7 @@ const contactFormSchema = z.object({
 interface ContactFormData extends z.infer<typeof contactFormSchema> {}
 
 export const ContactForm = () => {
+  const t = useTranslations('contact')
   const [isLoading, setIsLoading] = useState(false)
   const { handleSubmit, register, watch, reset } = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
@@ -43,7 +45,7 @@ export const ContactForm = () => {
           process.env.EMAILJS_PUBLIC_KEY!
         )
         .then(() => {
-          alert('Mensagem enviada com sucesso!')
+          alert(t('success'))
           reset()
         })
         .catch((err) => {
@@ -67,19 +69,19 @@ export const ContactForm = () => {
     >
       <div className="mx-auto w-full max-w-[420px]">
         <SectionTitle
-          title="Vamos trabalhar juntos?"
-          subtitle="contato"
+          title={t('title')}
+          subtitle={t('subtitle')}
           className="items-center text-center"
         />
         <form
           className="mt-12 flex w-full flex-col gap-4"
           onSubmit={handleSubmit(onSubmit, onError)}
         >
-          <Input placeholder="Seu nome" type="text" {...register('name')} />
-          <Input placeholder="Seu email" type="email" {...register('email')} />
+          <Input placeholder={t('namePlaceholder')} type="text" {...register('name')} />
+          <Input placeholder={t('emailPlaceholder')} type="email" {...register('email')} />
           <div className="flex flex-col gap-2">
             <textarea
-              placeholder="Sua mensagem"
+              placeholder={t('messagePlaceholder')}
               className="h-[138px] w-full resize-none rounded-lg bg-gray-800 p-4 text-gray-50 outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-orange-600"
               maxLength={1000}
               {...register('message')}
@@ -98,7 +100,7 @@ export const ContactForm = () => {
               <FiLoader className="animate-spin" />
             ) : (
               <>
-                Enviar mensagem
+                {t('submit')}
                 <HiArrowNarrowRight />
               </>
             )}

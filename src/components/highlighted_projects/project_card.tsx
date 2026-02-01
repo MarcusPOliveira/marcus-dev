@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { FaMobile, FaDesktop } from 'react-icons/fa'
 import { HiArrowNarrowRight } from 'react-icons/hi'
 import { MotionProps, motion } from 'framer-motion'
+import { useLocale, useTranslations } from 'next-intl'
 
 import { Project } from '@/types'
 
@@ -13,6 +14,9 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard = ({ project }: ProjectCardProps) => {
+  const locale = useLocale()
+  const t = useTranslations('highlightedProjects')
+
   const animation: MotionProps = {
     initial: { opacity: 0, y: 50 },
     whileInView: { opacity: 1, y: 0 },
@@ -73,8 +77,8 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
           ))}
         </div>
 
-        <Link href={`/projects/${project.slug}`}>
-          Ver projeto
+        <Link href={`/${locale}/projects/${project.slug}`}>
+          {t('viewProject')}
           <HiArrowNarrowRight />
         </Link>
       </div>

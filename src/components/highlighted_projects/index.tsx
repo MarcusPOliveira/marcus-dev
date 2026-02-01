@@ -1,4 +1,6 @@
+'use client'
 import { HiArrowNarrowRight } from 'react-icons/hi'
+import { useLocale, useTranslations } from 'next-intl'
 
 import { Project } from '@/types'
 
@@ -10,9 +12,12 @@ interface HighlightedProjectsProps {
 }
 
 export const HighlightedProjects = ({ projects }: HighlightedProjectsProps) => {
+  const locale = useLocale()
+  const t = useTranslations('highlightedProjects')
+
   return (
     <section className="container py-16">
-      <SectionTitle title="Projetos em destaque" subtitle="destaques" />
+      <SectionTitle title={t('title')} subtitle={t('subtitle')} />
       <HorizontalDivider className="mb-16" />
       <div className="">
         {projects?.map((project) => (
@@ -22,9 +27,9 @@ export const HighlightedProjects = ({ projects }: HighlightedProjectsProps) => {
           </div>
         ))}
         <span className="flex items-center gap-1.5">
-          <p className="text-gray-400">Se interessou?</p>
-          <Link href="/projects" className="inline-flex">
-            Ver todos <HiArrowNarrowRight />
+          <p className="text-gray-400">{t('interested')}</p>
+          <Link href={`/${locale}/projects`} className="inline-flex">
+            {t('seeAll')} <HiArrowNarrowRight />
           </Link>
         </span>
       </div>

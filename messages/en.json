@@ -1,0 +1,63 @@
+{
+  "navigation": {
+    "home": "Home",
+    "projects": "Projects"
+  },
+  "hero": {
+    "greeting": "Hello, my name is",
+    "name": "Marcus Paulo Oliveira",
+    "contact": "Get in touch"
+  },
+  "knowledge": {
+    "title": "Skills",
+    "subtitle": "technologies",
+    "experience": "{time} of experience"
+  },
+  "highlightedProjects": {
+    "title": "Featured Projects",
+    "subtitle": "highlights",
+    "interested": "Interested?",
+    "seeAll": "See all",
+    "viewProject": "View project"
+  },
+  "workExperience": {
+    "title": "Work Experience",
+    "subtitle": "experience",
+    "present": "Present",
+    "skills": "Skills",
+    "year_one": "year",
+    "year_other": "years",
+    "month_one": "month",
+    "month_other": "months",
+    "and": "and",
+    "companyLogoAlt": "{company} logo"
+  },
+  "contact": {
+    "title": "Let's work together?",
+    "subtitle": "contact",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "Your email",
+    "messagePlaceholder": "Your message",
+    "submit": "Send message",
+    "success": "Message sent successfully!"
+  },
+  "projectsPage": {
+    "title": "My Projects",
+    "subtitle": "projects",
+    "description": "Here you can see some of the work I've developed. Browse and explore the projects to see how they were created, the technologies used, and how the features were implemented.",
+    "backHome": "Back to Home"
+  },
+  "projectDetails": {
+    "subtitle": "details",
+    "repository": "Repository",
+    "liveProject": "Live Project",
+    "backToProjects": "Back to Projects",
+    "thumbnailAlt": "Project thumbnail {title}"
+  },
+  "footer": {
+    "madeBy": "Made with ❤️ by"
+  },
+  "common": {
+    "logoAlt": "Logo"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "navigation": {
+    "home": "Home",
+    "projects": "Projetos"
+  },
+  "hero": {
+    "greeting": "Olá, meu nome é",
+    "name": "Marcus Paulo Oliveira",
+    "contact": "Entre em contato"
+  },
+  "knowledge": {
+    "title": "Conhecimentos",
+    "subtitle": "tecnologias",
+    "experience": "{time} de experiência"
+  },
+  "highlightedProjects": {
+    "title": "Projetos em destaque",
+    "subtitle": "destaques",
+    "interested": "Se interessou?",
+    "seeAll": "Ver todos",
+    "viewProject": "Ver projeto"
+  },
+  "workExperience": {
+    "title": "Experiências Profissionais",
+    "subtitle": "experiências",
+    "present": "Até o momento",
+    "skills": "Competências",
+    "year_one": "ano",
+    "year_other": "anos",
+    "month_one": "mês",
+    "month_other": "meses",
+    "and": "e",
+    "companyLogoAlt": "Logo da {company}"
+  },
+  "contact": {
+    "title": "Vamos trabalhar juntos?",
+    "subtitle": "contato",
+    "namePlaceholder": "Seu nome",
+    "emailPlaceholder": "Seu email",
+    "messagePlaceholder": "Sua mensagem",
+    "submit": "Enviar mensagem",
+    "success": "Mensagem enviada com sucesso!"
+  },
+  "projectsPage": {
+    "title": "Meus Projetos",
+    "subtitle": "projetos",
+    "description": "Aqui você poderá ver alguns dos meus trabalhos que eu desenvolvi. Navegue e explore os projetos para ver como foram criados, as tecnologias utilizadas e como as funcionalidades foram implementadas.",
+    "backHome": "Voltar para Home"
+  },
+  "projectDetails": {
+    "subtitle": "detalhes",
+    "repository": "Repositório",
+    "liveProject": "Projeto Online",
+    "backToProjects": "Voltar para Projetos",
+    "thumbnailAlt": "Thumbnail do projeto {title}"
+  },
+  "footer": {
+    "madeBy": "Made with ❤️ by"
+  },
+  "common": {
+    "logoAlt": "Logo"
+  }
+}

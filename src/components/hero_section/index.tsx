@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import { HiArrowNarrowRight } from 'react-icons/hi'
 import { motion } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 
 import { Button, CmsIcon, RichText, TechBadge } from '..'
 import { HomePageInfo } from '@/types'
@@ -11,6 +12,8 @@ interface HeroSectionProps {
 }
 
 export const HeroSection = ({ homeInfo }: HeroSectionProps) => {
+  const t = useTranslations('hero')
+
   const handleContact = () => {
     const goToContactSection = document.querySelector('#contact')
     if (goToContactSection) {
@@ -28,8 +31,8 @@ export const HeroSection = ({ homeInfo }: HeroSectionProps) => {
           exit={{ opacity: 0, x: -100 }}
           transition={{ duration: 0.5 }}
         >
-          <p className="font-mono text-orange-600">Olá, meu nome é</p>
-          <h2 className="mt-2 text-4xl font-medium">Marcus Paulo Oliveira</h2>
+          <p className="font-mono text-orange-600">{t('greeting')}</p>
+          <h2 className="mt-2 text-4xl font-medium">{t('name')}</h2>
 
           {homeInfo?.introduction?.raw && (
             <div className="my-6 text-sm text-gray-400 sm:text-base">
@@ -53,7 +56,7 @@ export const HeroSection = ({ homeInfo }: HeroSectionProps) => {
 
           <div className="flex flex-col mt-6 sm:flex-row sm:items-center sm:gap-5 lg:mt-10">
             <Button className="shadow-button" onClick={handleContact}>
-              Entre em contato <HiArrowNarrowRight size={18} />
+              {t('contact')} <HiArrowNarrowRight size={18} />
             </Button>
 
             <div className="flex items-center h-20 gap-3 text-2xl text-gray-600">
