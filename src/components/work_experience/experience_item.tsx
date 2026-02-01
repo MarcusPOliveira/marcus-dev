@@ -1,11 +1,13 @@
+'use client'
 import Image from 'next/image'
-import { ptBR } from 'date-fns/locale'
+import { ptBR, enUS } from 'date-fns/locale'
 import {
   differenceInMonths,
   differenceInYears,
   format,
   getTime,
 } from 'date-fns'
+import { useLocale, useTranslations } from 'next-intl'
 
 import { WorkExperience } from '@/types/workExperienceTypes'
 
@@ -16,15 +18,22 @@ interface ExperienceItemProps {
 }
 
 export const ExperienceItem = ({ experience }: ExperienceItemProps) => {
+  const locale = useLocale()
+  const t = useTranslations('workExperience')
+
+  const dateLocale = locale === 'pt' ? ptBR : enUS
+
   const startDate = new Date(experience.startDate + 'T00:00:00')
-  const formattedStartDate = format(startDate, 'MMM yyyy', { locale: ptBR })
+  const formattedStartDate = format(startDate, 'MMM yyyy', {
+    locale: dateLocale,
+  })
 
   const endDate = experience.endDate
     ? new Date(experience.endDate + 'T00:00:00')
     : new Date()
   const formattedEndDate = experience.endDate
-    ? format(endDate, 'MMM yyyy', { locale: ptBR })
-    : 'Até o momento'
+    ? format(endDate, 'MMM yyyy', { locale: dateLocale })
+    : t('present')
 
   const today = getTime(new Date())
   const endDuration = endDate ? new Date(endDate) : today
@@ -34,24 +43,28 @@ export const ExperienceItem = ({ experience }: ExperienceItemProps) => {
 
   const formattedDuration =
     years > 0
-      ? `${years} ano${years > 1 ? 's' : ''}${
+      ? `${years} ${t(years > 1 ? 'year_other' : 'year_one')}${
           monthsRemaining > 0
-            ? ` e ${monthsRemaining} mes${monthsRemaining > 1 ? 'es' : ''}`
+            ? ` ${t('and')} ${monthsRemaining} ${t(
+                monthsRemaining > 1 ? 'month_other' : 'month_one'
+              )}`
             : ''
         }`
-      : `${months} mes${months > 1 ? 'es' : ''}`
+      : `${months} ${t(months > 1 ? 'month_other' : 'month_one')}`
 
   return (
     <div className="grid grid-cols-[40px,1fr] gap-4 md:gap-10">
       <div className="flex flex-col items-center gap-4">
         <div className="rounded-full border border-gray-500 p-0.5">
-          <Image
-            src={experience.companyLogo.url}
-            alt={`Logo da ${experience.companyName}`}
-            width={40}
-            height={40}
-            className="rounded-full"
-          />
+          {experience?.companyLogo?.url ? (
+            <Image
+              src={experience?.companyLogo?.url}
+              alt={t('companyLogoAlt', { company: experience.companyName })}
+              width={40}
+              height={40}
+              className="rounded-full"
+            />
+          ) : null}
         </div>
         <div className="h-full w-[1px] bg-gray-800" />
       </div>
@@ -75,8 +88,8 @@ export const ExperienceItem = ({ experience }: ExperienceItemProps) => {
             )}
           </div>
         </div>
-        <p className="mb-3 mt-6 text-sm font-semibold text-gray-400">
-          {experience.techs.length > 0 && 'Competências'}
+        <p className="mt-6 mb-3 text-sm font-semibold text-gray-400">
+          {experience.techs.length > 0 && t('skills')}
         </p>
         <div className="mb-8 flex flex-wrap gap-x-2 gap-y-3 lg:max-w-[350px]">
           {experience.techs.map((tech) => (

@@ -1,6 +1,8 @@
+'use client'
 import { TbBrandGithub } from 'react-icons/tb'
 import { FiGlobe } from 'react-icons/fi'
 import { HiArrowNarrowLeft } from 'react-icons/hi'
+import { useLocale, useTranslations } from 'next-intl'
 
 import { Project } from '@/types'
 
@@ -11,6 +13,9 @@ interface ProjectDetailsProps {
 }
 
 export const ProjectDetails = ({ project }: ProjectDetailsProps) => {
+  const locale = useLocale()
+  const t = useTranslations('projectDetails')
+
   return (
     <section className="relative flex w-full flex-col items-center justify-end overflow-hidden px-6 py-24 pb-10 sm:min-h-[750px] sm:pb-24">
       <div
@@ -21,7 +26,7 @@ export const ProjectDetails = ({ project }: ProjectDetailsProps) => {
       />
       <SectionTitle
         title={project?.title}
-        subtitle="detalhes"
+        subtitle={t('subtitle')}
         className="items-center text-center sm:[&>h3]:text-4xl"
       />
       <div className="my-4 max-w-[640px] text-sm text-gray-400 sm:my-6 sm:text-base">
@@ -40,20 +45,20 @@ export const ProjectDetails = ({ project }: ProjectDetailsProps) => {
         {project?.githubUrl && (
           <a href={project.githubUrl} target="_blank">
             <Button className="min-w-[180px]">
-              <TbBrandGithub /> Repositório
+              <TbBrandGithub /> {t('repository')}
             </Button>
           </a>
         )}
         {project?.liveProjectUrl && (
           <a href={project.liveProjectUrl} target="_blank">
             <Button className="min-w-[180px]">
-              <FiGlobe /> Projeto Online
+              <FiGlobe /> {t('liveProject')}
             </Button>
           </a>
         )}
       </div>
-      <Link href="/projects">
-        <HiArrowNarrowLeft /> Voltar para Projetos
+      <Link href={`/${locale}/projects`}>
+        <HiArrowNarrowLeft /> {t('backToProjects')}
       </Link>
     </section>
   )

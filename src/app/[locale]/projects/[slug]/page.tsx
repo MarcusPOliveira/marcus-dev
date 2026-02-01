@@ -1,5 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
+import { useLocale } from 'next-intl'
+import { use } from 'react'
 
 import type { Project } from '@/types'
 
@@ -16,15 +18,15 @@ import {
 } from '@/components'
 
 export interface ProjectProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
-const getProjectDetails = async (slug: string): Promise<Project> => {
+const getProjectDetails = async (slug: string, locale: string): Promise<Project> => {
   const query = `
-  query ProjectQuery() {
-    project(where: {slug: "${slug}"}) {
+  query ProjectQuery($locale: Locale!) {
+    project(where: {slug: "${slug}"}, locales: [$locale, pt_BR]) {
       pageThumbnail {
         url
       }
@@ -54,13 +56,16 @@ const getProjectDetails = async (slug: string): Promise<Project> => {
   `
   const data = fetchHygraphQuery<Project>(
     query,
+    locale,
     1000 * 60 * 60 * 24 // 1 day
   )
 
   return data
 }
 
-export default function Project({ params: { slug } }: ProjectProps) {
+export default function Project({ params }: ProjectProps) {
+  const locale = useLocale()
+  const { slug } = use(params)
   const [isMounted, setIsMounted] = useState(false)
   const [projectData, setProjectData] = useState<any>({})
 
@@ -69,12 +74,12 @@ export default function Project({ params: { slug } }: ProjectProps) {
   useEffect(() => {
     setIsMounted(true)
     const fetchData = async () => {
-      const response = await getProjectDetails(slug)
+      const response = await getProjectDetails(slug, locale)
       setProjectData(response)
     }
 
     fetchData()
-  }, [slug])
+  }, [slug, locale])
 
   if (!isMounted) return null
 

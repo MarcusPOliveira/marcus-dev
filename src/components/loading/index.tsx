@@ -1,3 +1,4 @@
+'use client'
 import Lottie from 'lottie-react'
 
 import LoadingAnimation from '../../../public/animations/loading.json'

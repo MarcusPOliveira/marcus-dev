@@ -1,5 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 
 import { KnownTechs } from '@/types'
 
@@ -11,9 +12,11 @@ interface KnowledgeProps {
 }
 
 export const Knowledge = ({ techs }: KnowledgeProps) => {
+  const t = useTranslations('knowledge')
+
   return (
     <section className="container py-16">
-      <SectionTitle title="Conhecimentos" subtitle="tecnologias" />
+      <SectionTitle title={t('title')} subtitle={t('subtitle')} />
       <div className="mt-[60px] grid grid-cols-[repeat(auto-fit,_minmax(264px,1fr))] gap-3">
         {Array.isArray(techs) &&
           techs.length > 0 &&

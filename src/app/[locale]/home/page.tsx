@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
+import { useLocale } from 'next-intl'
 
 import { HomePageData, HomePageInfo } from '@/types'
 import { WorkExperience as WorkExperienceType } from '@/types/workExperienceTypes'
@@ -19,7 +20,7 @@ import {
   WorkExperience,
 } from '@/components'
 
-const getPageData = async (): Promise<HomePageData> => {
+const getPageData = async (locale: string): Promise<HomePageData> => {
   const query = `
   query PageQuery {
     page(where: {slug: "home"}) {
@@ -73,10 +74,11 @@ const getPageData = async (): Promise<HomePageData> => {
   }
 `
 
-  return fetchHygraphQuery(query, 60 * 60 * 24) //24 hours to revalidate
+  return fetchHygraphQuery(query, locale, 60 * 60 * 24) //24 hours to revalidate
 }
 
 const Home = () => {
+  const locale = useLocale()
   const [isMounted, setIsMounted] = useState(false)
   const [pageData, setPageData] = useState({} as HomePageInfo)
   const [workExperiences, setWorkExperiences] = useState<WorkExperienceType[]>(
@@ -88,14 +90,14 @@ const Home = () => {
   useEffect(() => {
     setIsMounted(true)
     const fetchData = async () => {
-      const { page: pageData, workExperiences } = await getPageData()
+      const { page: pageData, workExperiences } = await getPageData(locale)
 
       setPageData(pageData)
       setWorkExperiences(workExperiences)
     }
 
     fetchData()
-  }, [])
+  }, [locale])
 
   if (!isMounted) return null
 
