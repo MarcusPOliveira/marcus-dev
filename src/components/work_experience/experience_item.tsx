@@ -88,8 +88,8 @@ export const ExperienceItem = ({ experience }: ExperienceItemProps) => {
             )}
           </div>
         </div>
-        <p className="mb-3 mt-6 text-sm font-semibold text-gray-400">
-          {experience.techs.length > 0 && 'Competências'}
+        <p className="mt-6 mb-3 text-sm font-semibold text-gray-400">
+          {experience.techs.length > 0 && t('skills')}
         </p>
         <div className="mb-8 flex flex-wrap gap-x-2 gap-y-3 lg:max-w-[350px]">
           {experience.techs.map((tech) => (
