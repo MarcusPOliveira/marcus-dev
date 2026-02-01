@@ -1,36 +1,18 @@
 'use client'
-import { getRelativeTimeString } from '@/utils'
 import { KnownTechs } from '@/types'
 import { CmsIcon } from '..'
-import { useLocale, useTranslations } from 'next-intl'
 
 interface KnownTechProps {
   tech: KnownTechs
 }
 
 export const KnownTech = ({ tech }: KnownTechProps) => {
-  const locale = useLocale()
-  const t = useTranslations('knowledge')
-
-  const localeMap: Record<string, string> = {
-    pt: 'pt-BR',
-    en: 'en-US',
-  }
-
-  const relativeTime = getRelativeTimeString(
-    new Date(tech.startDate),
-    localeMap[locale] || 'pt-BR'
-  ).replace(/há |ago /, '')
-
   return (
-    <div className="flex flex-col gap-2 rounded-lg bg-gray-600/20 p-6 text-gray-500 transition-all hover:bg-gray-600/30 hover:text-orange-600">
-      <div className="itens-center flex justify-between">
-        <p className="font-medium">{tech.name}</p>
-        <span className="text-xl">
-          <CmsIcon icon={tech.iconSvg} />
-        </span>
+    <div className="group relative flex items-center gap-4 rounded-lg bg-gray-600/20 p-6 text-gray-500 transition-all hover:bg-gray-600/30 hover:text-orange-600 hover:shadow-lg hover:shadow-orange-600/10">
+      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-600/30 text-2xl transition-all group-hover:bg-gray-600/50 group-hover:scale-110">
+        <CmsIcon icon={tech.iconSvg} />
       </div>
-      <span>{t('experience', { time: relativeTime })}</span>
+      <p className="flex-1 font-medium text-lg">{tech.name}</p>
     </div>
   )
 }

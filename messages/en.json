@@ -10,8 +10,7 @@
   },
   "knowledge": {
     "title": "Skills",
-    "subtitle": "technologies",
-    "experience": "{time} of experience"
+    "subtitle": "technologies"
   },
   "highlightedProjects": {
     "title": "Featured Projects",
