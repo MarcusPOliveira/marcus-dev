@@ -11,15 +11,6 @@ const nextConfig = {
     EMAILJS_TEMPLATE_ID: process.env.EMAILJS_TEMPLATE_ID,
     EMAILJS_PUBLIC_KEY: process.env.EMAILJS_PUBLIC_KEY
   },
-  async redirects() {
-    return [
-      {
-        source: '/:locale',
-        destination: '/:locale/home',
-        permanent: true
-      }
-    ]
-  },
   images: {
     remotePatterns: [
       {
