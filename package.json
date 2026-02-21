@@ -13,7 +13,7 @@
     "@graphcms/rich-text-react-renderer": "^0.6.1",
     "@hookform/resolvers": "^3.3.2",
     "@vercel/analytics": "^1.4.1",
-    "axios": "^1.6.1",
+    "axios": "^1.13.5",
     "clsx": "^2.0.0",
     "date-fns": "^2.30.0",
     "framer-motion": "^10.16.4",
