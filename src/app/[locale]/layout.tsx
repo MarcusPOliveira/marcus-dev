@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation'
 
 import '../globals.css'
 import { locales } from '@/i18n/config'
+import { CustomCursor } from '@/components'
 
 const poppins = Poppins({
   variable: '--font-poppins',
@@ -54,6 +55,7 @@ export default async function LocaleLayout({
     <html lang={locale} className={`${poppins.variable} ${plexMono.variable}`}>
       <body className={poppins.className}>
         <NextIntlClientProvider key={locale} locale={locale} messages={messages}>
+          <CustomCursor />
           {children}
         </NextIntlClientProvider>
         <Analytics />
