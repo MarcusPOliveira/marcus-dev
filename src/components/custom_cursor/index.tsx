@@ -23,7 +23,11 @@ export const CustomCursor = () => {
         // Obter o cursor computado do elemento atual
         const computedStyle = window.getComputedStyle(target)
         // Se for um elemento interativo, esconde o custom cursor para mostrar o nativo
-        if (computedStyle.cursor === 'pointer') {
+        if (
+          computedStyle.cursor === 'pointer' ||
+          target.tagName === 'INPUT' ||
+          target.tagName === 'TEXTAREA'
+        ) {
           setIsHidden(true)
         } else {
           setIsHidden(false)
