@@ -55,7 +55,10 @@ export const HeroSection = ({ homeInfo }: HeroSectionProps) => {
           </div>
 
           <div className="flex flex-col mt-6 sm:flex-row sm:items-center sm:gap-5 lg:mt-10">
-            <Button className="shadow-button" onClick={handleContact}>
+            <Button
+              className="min-w-[180px] shadow-button"
+              onClick={handleContact}
+            >
               {t('contact')} <HiArrowNarrowRight size={18} />
             </Button>
 

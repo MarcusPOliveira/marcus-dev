@@ -58,5 +58,8 @@
   },
   "common": {
     "logoAlt": "Logo"
+  },
+  "cursor": {
+    "you": "Você"
   }
 }
