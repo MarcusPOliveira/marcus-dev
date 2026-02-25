@@ -25,26 +25,28 @@ export const LanguageSelector = () => {
       <div className="flex items-center gap-2">
         <button
           onClick={() => switchLocale('pt')}
-          className={`text-sm font-medium transition-colors ${
+          className={`text-lg transition-all ${
             locale === 'pt'
-              ? 'text-emerald-500'
-              : 'text-gray-400 hover:text-gray-200'
+              ? 'opacity-100 scale-110'
+              : 'opacity-50 hover:opacity-100 hover:scale-110'
           }`}
           aria-label="Português"
+          title="Português"
         >
-          PT
+          🇧🇷
         </button>
         <span className="text-gray-600">|</span>
         <button
           onClick={() => switchLocale('en')}
-          className={`text-sm font-medium transition-colors ${
+          className={`text-lg transition-all ${
             locale === 'en'
-              ? 'text-emerald-500'
-              : 'text-gray-400 hover:text-gray-200'
+              ? 'opacity-100 scale-110'
+              : 'opacity-50 hover:opacity-100 hover:scale-110'
           }`}
           aria-label="English"
+          title="English"
         >
-          EN
+          🇺🇸
         </button>
       </div>
     </div>
